@@ -3,7 +3,7 @@ Version:   1.0
 Release:   1%{?dist}
 Summary:   Oracle VM template jpougadv configuration script.
 License:   GPL
-URL:       https://gowatana.blogspot.jp/2017/12/ovm-template-config
+URL:       https://gowatana.blogspot.jp/2017/12/ovm-template-config.html
 Source0:   %{name}-%{version}.tar.gz
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: noarch
