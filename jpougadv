@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+
+### BEGIN PLUGIN INFO
+# name: jpougadv
+# configure: 55
+# cleanup: 55
+# description: Script to configure JPOUG Advent Calendar message.
+### END PLUGIN INFO
+
+import os
+import json
+from templateconfig.cli import main
+
+def set_motd():
+    motd_file = '/etc/motd'
+    if os.path.exists(motd_file):
+        fd_motd = open(motd_file, 'w')
+        fd_motd.write('=========================================\n')
+        fd_motd.write(' JPOUG Advent Calendar 2017\n')
+        fd_motd.write(' https://jpoug.doorkeeper.jp/events/67051\n')
+        fd_motd.write('=========================================\n')
+        fd_motd.close()
+
+def reset_motd():
+    motd_file = '/etc/motd'
+    if os.path.exists(motd_file):
+        fd_motd = open(motd_file, 'w')
+        fd_motd.close()
+
+def do_enumerate(target):
+    param = []
+    if target == 'configure':
+        param += []
+    elif target == 'cleanup':
+        param += []
+    return json.dumps(param)
+
+def do_configure(param):
+    param = json.loads(param)
+    set_motd()
+    return json.dumps(param)
+
+def do_cleanup(param):
+    param = json.loads(param)
+    reset_motd()
+    #shell_cmd('> /etc/motd')
+    return json.dumps(param)
+
+if __name__ == '__main__':
+    main(do_enumerate, {'configure': do_configure, 'cleanup': do_cleanup})
